@@ -3,26 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Button } from './components/button/Button'
-import { RightArrow } from './SVGSprite'
+import { Icon } from './components/icon/Icon';
 
-function App(type="RightArrow") {
-  const [image,setImage]=useState(null);
+function App() {
+
   const [count, setCount] = useState(0)
-  useEffect(() => {
-    const importComponent = async () => {
-      const module = await import(`./SVGSprite/${type}`);
-      module.default();
-      setImage(module);
-    };
-
-    importComponent();
-  })
-
-
   return (
     <>
       <h1>Counter app</h1>
-<RightArrow role="img" aria-label="right arrow" aria-hidden={false}/>
+<Icon name="RightArrow" hidden4Sr={false} accessible_name='right arrow'/>
       <div className="card">
       <Button onClick={() => setCount((count) => count + 1)} label={"Add"}>
         </Button>

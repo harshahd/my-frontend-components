@@ -1,0 +1,12 @@
+svg {
+  width: var(--icon-size, 1.5rem);
+  height: var(--icon-size, 1.5rem);
+  fill: var(--icon-fill, none);
+  stroke: var(--icon-stroke, currentColor);
+  stroke-width: 1.5;
+}
+
+/* prevents tooltip display on hover */
+svg[role="img"] {
+  pointer-events: none;
+}
