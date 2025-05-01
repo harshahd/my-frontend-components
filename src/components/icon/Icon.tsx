@@ -18,6 +18,7 @@ export const Icon = ({
   name,
   hidden4Sr = true,
   accessible_name = "",
+  ...props
 }: IconProps) => {
   const LazyComponent: LazyExoticComponent<
     React.ComponentType<SVGProps<SVGSVGElement>>
@@ -40,7 +41,7 @@ export const Icon = ({
 
   return (
     <Suspense fallback={null}>
-      <LazyComponent {...ariaProps} />
+      <LazyComponent {...ariaProps} {...props}/>
     </Suspense>
   );
 };
