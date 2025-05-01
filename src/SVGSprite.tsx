@@ -1,4 +1,5 @@
-import RightArrow from "./assets/icons/rightArrow.svg";
+import ArrowRight from "./assets/icons/ArrowRight.svg";
 import Bell from "./assets/icons/bell.svg";
 import ChevronUp from "./assets/icons/chevronUp.svg";
-export {RightArrow,Bell,ChevronUp};
+
+export { ArrowRight, Bell, ChevronUp };

@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
 import './App.css'
 import { Button } from './components/button/Button'
 import { Icon } from './components/icon/Icon';
@@ -11,7 +9,7 @@ function App() {
   return (
     <>
       <h1>Counter app</h1>
-<Icon name="RightArrow" hidden4Sr={false} accessible_name='right arrow'/>
+<Icon name="Bell" hidden4Sr={false} accessible_name='Bell'/>
       <div className="card">
       <Button onClick={() => setCount((count) => count + 1)} label={"Add"}>
         </Button>

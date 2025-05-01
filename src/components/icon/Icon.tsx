@@ -1,6 +1,7 @@
 import "./styles/Icon.module.css";
-import { IconType } from "./utils/types";
-import React, {Suspense, useMemo} from "react";
+import React, { Suspense, useMemo } from "react";
+import type { SVGProps, LazyExoticComponent } from "react";
+import type { IconType } from "./utils/types";
 
 interface IconProps {
   name: IconType;
@@ -8,14 +9,24 @@ interface IconProps {
   accessible_name?: string;
 }
 
+// Shape of your SVG component exports
+type SVGSpriteModule = {
+  [key in IconType]: React.ComponentType<SVGProps<SVGSVGElement>>;
+};
+
 export const Icon = ({
   name,
   hidden4Sr = true,
   accessible_name = "",
 }: IconProps) => {
-  const LazyComponent = useMemo(() => {
+  const LazyComponent: LazyExoticComponent<
+    React.ComponentType<SVGProps<SVGSVGElement>>
+  > = useMemo(() => {
     return React.lazy(async () => {
-      const module = await import(/* @vite-ignore */ '../../SVGSprite');
+      const module = await import(
+        /* @vite-ignore */ "../../SVGSprite"
+      ) as unknown as SVGSpriteModule;
+
       const Component = module[name];
       if (!Component) {
         throw new Error(`Component ${name} not found in SVGSprite`);
@@ -24,13 +35,12 @@ export const Icon = ({
     });
   }, [name]);
 
+  const ariaProps: SVGProps<SVGSVGElement> = hidden4Sr? { "aria-hidden": true, "aria-label": ""}
+    : { role: "img", "aria-label": accessible_name};
+
   return (
-    <Suspense fallback={<></>}>
-      <LazyComponent 
-      {...(hidden4Sr ? { "aria-hidden": "true" } : { role: "img" })}
-      {...(hidden4Sr ? { "aria-label": ""} : { "aria-label": accessible_name })}
-      {...(hidden4Sr ? { "title": ""} : { "title": accessible_name })}>
-      </LazyComponent>
+    <Suspense fallback={null}>
+      <LazyComponent {...ariaProps} />
     </Suspense>
-  )
+  );
 };
