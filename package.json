@@ -1,8 +1,28 @@
 {
-  "name": "my-frontend-components",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@harshahd/my-frontend-components",
+  "private": false,
+  "version": "0.0.2",
+  "author": "Harsha HD",
+  "description": "React typescript library for accessible re-usable components",
   "type": "module",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./src/components/icon/styles/Icon.module.css": "./dist/components/icon/styles/Icon.module.css",
+    "./src/assets": "./dist/assets"
+  },
+  "files": [
+    "/dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -13,7 +33,9 @@
   },
   "dependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-svg-sprite": "^0.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
